@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tcping-server
+  namespace: kd-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tcping-server
+  template:
+    metadata:
+      labels:
+        app: tcping-server
+    spec:
+      containers:
+        - name: tcping-server
+          image: kdvolder/tcping
+          ports:
+            - containerPort: 9000
+          imagePullPolicy: Always
